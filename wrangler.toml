@@ -1,0 +1,21 @@
+name = "xauusd-signal-bot"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+# Cron : toutes les 5 minutes (compatible avec le quota gratuit Twelve Data)
+[triggers]
+crons = ["*/5 * * * *"]
+
+# Base D1 : journal de trading (table "trades") + état du bot (table "meta")
+# L'ID sera généré automatiquement quand tu crées la base (voir README)
+[[d1_databases]]
+binding = "DB"
+database_name = "xauusd-signal-bot-db"
+database_id = "REMPLACE_MOI_AVEC_TON_ID_D1"
+
+# Secrets à ajouter via le dashboard Cloudflare (jamais dans ce fichier) :
+# - TWELVE_DATA_API_KEY
+# - TELEGRAM_BOT_TOKEN
+# - TELEGRAM_CHAT_ID
+# - TELEGRAM_WEBHOOK_SECRET (optionnel mais recommandé — une chaîne aléatoire que tu inventes,
+#   sert à vérifier que les requêtes /webhook viennent bien de Telegram)
