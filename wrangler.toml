@@ -11,7 +11,7 @@ crons = ["*/5 * * * *"]
 [[d1_databases]]
 binding = "DB"
 database_name = "xauusd-signal-bot-db"
-database_id = "REMPLACE_MOI_AVEC_TON_ID_D1"
+database_id = "686c2bc6-a704-4e4c-8b89-bc35c168ebb6"
 
 # Secrets à ajouter via le dashboard Cloudflare (jamais dans ce fichier) :
 # - TWELVE_DATA_API_KEY
