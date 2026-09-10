@@ -1,0 +1,33 @@
+name = "xauusd-signal-bot"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+# Cron : toutes les 2 minutes (1 seul timeframe surveillé — M5 — donc budget API Twelve Data :
+# 1 appel × 720 analyses/jour = 720 appels min/jour, sous la limite gratuite de 800/jour)
+[triggers]
+crons = ["*/2 * * * *"]
+
+# Base D1 : journal de trading (table "trades") + état du bot (table "meta")
+# L'ID sera généré automatiquement quand tu crées la base (voir README)
+[[d1_databases]]
+binding = "DB"
+database_name = "xauusd-signal-bot-db"
+database_id = "686c2bc6-a704-4e4c-8b89-bc35c168ebb6"
+
+# Secrets à ajouter via le dashboard Cloudflare (jamais dans ce fichier) :
+# - TWELVE_DATA_API_KEY
+# - TELEGRAM_BOT_TOKEN
+# - TELEGRAM_CHAT_ID
+# - TELEGRAM_WEBHOOK_SECRET (optionnel mais recommandé — une chaîne aléatoire que tu inventes,
+#   sert à vérifier que les requêtes /webhook viennent bien de Telegram)
+#
+# Paiements — FedaPay (Mobile Money / carte) :
+# - FEDAPAY_SECRET_KEY      (clé secrète de ton compte FedaPay, sandbox ou live)
+# - FEDAPAY_WEBHOOK_SECRET  (secret du endpoint webhook, généré dans le dashboard FedaPay)
+# - FEDAPAY_ENV             ("live" ou "sandbox", défaut "live")
+# - FEDAPAY_AMOUNT_XOF      (prix de l'abonnement mensuel en FCFA, ex: "5000")
+#
+# Paiements — NOWPayments (USDT TRC20) :
+# - NOWPAYMENTS_API_KEY
+# - NOWPAYMENTS_IPN_SECRET
+# - NOWPAYMENTS_AMOUNT_USD  (prix de l'abonnement mensuel en USD, ex: "8")
